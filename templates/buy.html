@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+{% block main %}
+    
+    <form action= "/buy" method="post">
+        <div class="mb-3">
+            {% if quote != None %}
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" value="{{ quote }}" type="text">
+                <span class="errormsg" id="errormsg"></span>
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Shares" type="number" onchange="checkInt()">
+                <button class="btn btn-primary" type="submit" id="buybtn" disabled>Buy</button>
+
+            {% else %}
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Symbol" type="text">
+                <span class="errormsg" id="errormsg"></span>
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Shares" type="number" onchange="checkInt()">
+                <button class="btn btn-primary" type="submit" id="buybtn" disabled>Buy</button>
+            {% endif %}
+            <script src="/static/buy.js"></script>
+        </div>
+    </form>
+{% endblock %}

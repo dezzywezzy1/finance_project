@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    {% if transaction_history|length != 0 %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Shares</th>
+                    <th>Current Price</th>
+                    <th>Buy Price</th>
+                    <th>Total</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transaction_history %}
+                <tr>
+                    <td>{{ transaction.stock_symbol }}</td>
+                    <td>{{ transaction.shares }}</td>
+                    <td>{{ current_price[transaction.stock_symbol] | usd }}</td>
+                    <td>{{ (transaction.price/transaction.shares) | usd }}</td>
+                    <td>{{ (current_price[transaction.stock_symbol] * transaction.shares) | usd }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"></td>
+                    <td style="font-weight: bold;">Cash</td>
+                    <td>{{ current_cash | usd }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td style="font-weight: bold;">Total</td>
+                    <td>{{ total | usd }}</td>
+
+                </tr>
+            </tfoot>
+        </table>
+        {% else %}
+            <div>No Transaction History</div>
+        {% endif %}
+
+{% endblock %}

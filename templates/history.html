@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    {% if transactions | length != 0 %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Transaction Date</th>
+                    <th>Stock Symbol</th>
+                    <th># of Shares</th>
+                    <th>Price per Share</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.transaction_date }}</td>
+                    <td>{{ transaction.stock_symbol }}</td>
+                    <td>{{ transaction.shares }}</td>
+                    <td>{{ transaction.price | usd}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    
+        {% else %}
+        <div>No Transaction History!</div>
+        {% endif %}
+
+    
+{% endblock %}

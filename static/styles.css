@@ -1,0 +1,59 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+.stockquote
+{
+    text-align: center;
+    font-size: large;
+}
+
+.searchagain
+{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.errormsg 
+{
+    font-style: italic;
+    font-size: small;
+    margin-top: 5px;
+    color: red;
+}
+
+#symbol
+{
+    margin-bottom: 20px;
+}
+#buybtn
+{
+    margin-top: 10px;
+}
+
+.shares 
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,10 @@
+{
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on"
+    },
+    "editor.suggest.preview": true,
+    "python.analysis.autoImportCompletions": false,
+    "vsintellicode.modify.editor.suggestSelection": "disabled",
+    "python.analysis.typeCheckingMode": "basic"
+}
