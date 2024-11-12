@@ -1,10 +1,11 @@
 import csv
 import datetime
-import pytz
+import urllib.parse
 import requests
 import subprocess
 import urllib
 import uuid
+import pytz
 
 from flask import redirect, render_template, session
 from functools import wraps
@@ -49,11 +50,11 @@ def lookup(symbol):
 
     # Yahoo Finance API
     url = (
-        f"https://query1.finance.yahoo.com/v7/finance/download/{urllib.parse.quote_plus(symbol)}"
+        f"https://query1.finance.yahoo.com/v8/finance/download/{urllib.parse.quote_plus(symbol)}"
         f"?period1={int(start.timestamp())}"
         f"&period2={int(end.timestamp())}"
         f"&interval=1d&events=history&includeAdjustedClose=true"
-    )
+    ) 
 
     # Query API
     try:

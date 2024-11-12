@@ -1,5 +1,5 @@
 import os
-
+import pytz
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
@@ -38,10 +38,13 @@ def index():
     current_cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"]
     total = 0
     for transaction in transaction_history:
+        print(transaction)
+        print(lookup(transaction["stock_symbol"]))
         if transaction["stock_symbol"] in current_price:
             continue
         
         else:
+            
             current_price[transaction["stock_symbol"]] = float(lookup(transaction["stock_symbol"])["price"])
             total += (current_price[transaction["stock_symbol"]] * transaction["shares"])
     
@@ -183,7 +186,7 @@ def register():
             flash("Must provide a password!", "error")
             return render_template("register.html")
         
-        elif len(request.form.get("password")) < 8 or len(request.form.get("password")) > 16:
+        elif len(request.form.get("password")) < 8 or len(request.form.get("password")) > 16: 
             flash("Password must be 8-16 characters long!", "error")
             return render_template("register.html")
                  
@@ -245,7 +248,7 @@ def sell():
             flash("Please enter a whole number of shares to sell!")
             return render_template("sell.html")
         
-        sell_shares = -1 * int(shares)
+        sell_shares = -1 * int(shares) 
         sell_price = lookup(stock)["price"]
         db.execute("INSERT INTO history (user_id, transaction_date, price, shares, stock_symbol) VALUES (?, ?, ?, ?, ?)", session["user_id"], get_datetime(), sell_price, sell_shares, stock)
         cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"]
